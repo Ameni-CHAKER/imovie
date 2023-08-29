@@ -22,6 +22,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import Loading from "../components/loading";
 import { styles } from "../theme";
+import i18n, { tokens } from "../../i18n";
 
 const ios = Platform.OS === "ios";
 
@@ -32,7 +33,13 @@ export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
 
+  const { Hello, Introduction, Body } = tokens.app.intro;
+  const hello = i18n.t(Hello);
+  const intro = i18n.t(Introduction);
+  const body = i18n.t(Body);
+
   useEffect(() => {
+    console.log("translated", hello, intro, body);
     getTrendingMovies();
     getUpcomingMovies();
     getTopRatedMovies();
